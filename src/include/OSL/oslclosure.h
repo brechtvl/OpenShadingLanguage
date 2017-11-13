@@ -121,10 +121,10 @@ struct OSLEXECPUBLIC ClosureColor {
 struct OSLEXECPUBLIC ClosureComponent : public ClosureColor
 {
     Vec3 w;                     ///< Weight of this component
-    alignas(void*) char mem[8]; ///< Memory for the primitive, 8 is the minimum, allocation will be
+    alignas(16) char mem[8];    ///< Memory for the primitive, 8 is the minimum, allocation will be
                                 ///  scaled to requirements of the registered closure struct.
-                                ///  Alignment is forced to a void* to match likely alignement requirements
-                                ///  of the user's structs.
+                                ///  Alignment is forced to 16 bytes to match alignment requirements
+                                ///  of 64 bit pointers and 128 bit SSE types in user's structs.
 
     /// Handy method for getting the parameter memory as a void*.
     ///
